@@ -6,13 +6,17 @@ const checkTypeUser = require("../middleware/isTypeUser");
 const authController = require("../controller/auth");
 const { body } = require("express-validator");
 const User = require("../models/user");
-router.get(
-  "/all-product",
-  [checkTypeUser.checkClient],
-  shopController.getAllProducts
+router.get("/all-product", shopController.getAllProducts);
+router.post(
+  "/add-cart",
+  [checkAuth.checkClientAuth, checkTypeUser.checkClient],
+  shopController.postCart
 );
-router.post("/add-cart", [checkTypeUser.checkClient], shopController.postCart);
-router.get("/cart", [checkTypeUser.checkClient], shopController.getCart);
+router.get(
+  "/cart",
+  [checkAuth.checkClientAuth, checkTypeUser.checkClient],
+  shopController.getCart
+);
 router.post(
   "/delete-cart",
   [checkAuth.checkClientAuth, checkTypeUser.checkClient],
