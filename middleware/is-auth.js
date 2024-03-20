@@ -1,4 +1,5 @@
 exports.checkClientAuth = (req, res, next) => {
+  console.log(2, req.session);
   if (req.session.clientLoggedIn || req.session.adminLoggedIn) {
     console.log("check auth");
     // Nếu người dùng đã đăng nhập, cho phép tiếp tục thực hiện các thao tác trong request

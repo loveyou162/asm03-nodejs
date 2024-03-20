@@ -13,43 +13,43 @@ router.post(
 );
 router.get(
   "/all-product",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.getProductsAdmin
 );
 
 router.get(
   "/dashboard",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.getDashboard
 );
 router.post(
   "/new-product",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.postNewProduct
 );
 router.post(
   "/update-product",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.postUpdateProduct
 );
 router.get(
   "/update-product",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.getUpdateProduct
 );
 router.delete(
   "/delete-product",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.deleteProduct
 );
 router.get(
   "/all-room",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.getMessage
 );
 router.get(
   "/detail-room",
-  [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
   adminController.getDetailMessage
 );
 

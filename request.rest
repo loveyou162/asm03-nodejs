@@ -13,18 +13,17 @@ Content-Type: application/json
 ###############
 GET http://localhost:5000/admin/some-route
 ################################
-POST http://localhost:5000/admin/login
+POST http://localhost:5000/shop/login
 Content-Type: application/json
 
 
 {
-
-    "email": "okbabe162@gmail.com",
+    "email": "caoboi520@gmail.com",
     "password": "123123123",
-    "_csrf": "S7cJn9Eb-HYjsW70gNlU9VVUixhc7rCWaRZc"
+    "_csrf": "6FuyUsxg-Pf2d4pivQQS5geCYyCWPVHgmHyo"
 }
 ################################################################
-GET http://localhost:5000/user/logout
+GET http://localhost:5000/shop/logout
 
 
 ########
