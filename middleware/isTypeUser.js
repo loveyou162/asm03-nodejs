@@ -6,7 +6,7 @@ exports.checkClient = (req, res, next) => {
     return res.status(403).json({ message: "Forbidden" });
   }
   if (role === "client" || role === "admin") {
-    res.json({ role });
+    // res.json({ role });
     return next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập

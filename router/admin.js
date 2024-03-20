@@ -107,6 +107,5 @@ router.post(
 );
 
 router.get("/logout", authController.getLogouts);
-router.get("/display", authController.getDisplay);
 
 module.exports = router;
