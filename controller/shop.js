@@ -30,7 +30,7 @@ const formatPrice = (price) => {
 exports.getAllProducts = async (req, res, next) => {
   Product.find()
     .then((result) => {
-      // console.log(result);
+      console.log(req.session);
       return res.json(result);
     })
     .catch((err) => {
