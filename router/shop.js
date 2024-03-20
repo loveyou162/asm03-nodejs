@@ -8,19 +8,11 @@ const { body } = require("express-validator");
 const User = require("../models/user");
 router.get(
   "/all-product",
-  [checkAuth.checkClientAuth, checkTypeUser.checkClient],
+  [checkTypeUser.checkClient],
   shopController.getAllProducts
 );
-router.post(
-  "/add-cart",
-  [checkAuth.checkClientAuth, checkTypeUser.checkClient],
-  shopController.postCart
-);
-router.get(
-  "/cart",
-  [checkAuth.checkClientAuth, checkTypeUser.checkClient],
-  shopController.getCart
-);
+router.post("/add-cart", [checkTypeUser.checkClient], shopController.postCart);
+router.get("/cart", [checkTypeUser.checkClient], shopController.getCart);
 router.post(
   "/delete-cart",
   [checkAuth.checkClientAuth, checkTypeUser.checkClient],
