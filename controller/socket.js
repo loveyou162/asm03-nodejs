@@ -12,6 +12,7 @@ const initSocketIO = (server) => {
         "http://localhost:3001",
         "http://localhost:3000",
         "http://localhost:3002",
+        "https://admin-nodejs03.web.app",
       ],
       methods: ["GET", "POST"],
     },
