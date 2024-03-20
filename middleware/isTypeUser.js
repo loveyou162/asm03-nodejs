@@ -10,9 +10,9 @@ exports.checkClient = (req, res, next) => {
     return next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập
-    return res.status(401).json({ message: "Unauthorized" });
-    // Hoặc chuyển hướng đến trang đăng nhập
-    // res.redirect('/login');
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, chỉ cho phép từ client hoặc admin" });
   }
 };
 exports.checkAdmin = (req, res, next) => {
@@ -25,9 +25,9 @@ exports.checkAdmin = (req, res, next) => {
     return next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập
-    return res.status(401).json({ message: "Unauthorized" });
-    // Hoặc chuyển hướng đến trang đăng nhập
-    // res.redirect('/login');
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, chỉ cho phép từ admin" });
   }
 };
 exports.checkCounselor = (req, res, next) => {
@@ -40,8 +40,8 @@ exports.checkCounselor = (req, res, next) => {
     return next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập
-    return res.status(401).json({ message: "Unauthorized" });
-    // Hoặc chuyển hướng đến trang đăng nhập
-    // res.redirect('/login');
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, chỉ cho phép từ tư vấn viên" });
   }
 };

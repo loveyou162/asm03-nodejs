@@ -5,9 +5,9 @@ exports.checkClientAuth = (req, res, next) => {
     next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập
-    return res.status(401).json({ message: "Unauthorized" });
-    // Hoặc chuyển hướng đến trang đăng nhập
-    // res.redirect('/login');
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, client hoặc admin chưa đăng nhập" });
   }
 };
 exports.checkAdminAuth = (req, res, next) => {
@@ -17,8 +17,8 @@ exports.checkAdminAuth = (req, res, next) => {
     next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập
-    return res.status(401).json({ message: "Unauthorized" });
-    // Hoặc chuyển hướng đến trang đăng nhập
-    // res.redirect('/login');
+    return res
+      .status(401)
+      .json({ message: "Unauthorized, admin chưa đăng nhập" });
   }
 };
