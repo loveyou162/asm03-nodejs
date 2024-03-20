@@ -116,12 +116,3 @@ exports.getLogouts = (req, res, next) => {
     res.send("logout");
   });
 };
-exports.getDisplay = (req, res) => {
-  const cookieHeader = req.headers.cookie;
-  console.log(130, cookieHeader);
-  // Sử dụng cookie-parser để phân tích chuỗi cookie
-  const cookies = cookieHeader.split("=");
-  // Lấy giá trị của cookie 'connect.sid'
-  const connectSid = cookies[1];
-  console.log(connectSid);
-};
