@@ -36,7 +36,7 @@ exports.checkCounselor = (req, res, next) => {
     // Nếu không có vai trò được xác định, chuyển hướng hoặc trả về lỗi
     return res.status(403).json({ message: "Forbidden" });
   }
-  if (role === "counselor" || role === "admin") {
+  if (role === "counselors" || role === "admin") {
     return next();
   } else {
     // Nếu người dùng chưa đăng nhập, trả về một lỗi hoặc chuyển hướng đến trang đăng nhập

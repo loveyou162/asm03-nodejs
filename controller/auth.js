@@ -83,6 +83,10 @@ exports.postLogin = async (req, res, next) => {
         req.session.adminLoggedIn = true;
         req.session.user = user;
         req.session.role = user.role;
+      } else {
+        req.session.counselorsLoggedIn = true;
+        req.session.user = user;
+        req.session.role = user.role;
       }
       req.session.save((err) => {
         if (err) {

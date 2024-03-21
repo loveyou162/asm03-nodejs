@@ -12,7 +12,7 @@ exports.checkClientAuth = (req, res, next) => {
   }
 };
 exports.checkAdminAuth = (req, res, next) => {
-  if (req.session.adminLoggedIn) {
+  if (req.session.adminLoggedIn || req.session.counselorsLoggedIn) {
     console.log("check auth");
     // Nếu người dùng đã đăng nhập, cho phép tiếp tục thực hiện các thao tác trong request
     next();
