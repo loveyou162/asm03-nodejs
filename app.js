@@ -32,7 +32,7 @@ app.use(
       "http://localhost:3001",
       "https://admin-nodejs03-be7d5.web.app",
       "https://client-nodejs03-20cea.web.app",
-      "http://localhost:5000",
+      "https://asm03-nodejs-server.onrender.com",
     ],
     credentials: true,
     method: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
@@ -66,7 +66,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       // Cho phép hiển thị ảnh từ đường dẫn /images
-      "img-src": ["'self'", "http://localhost:5000/images"],
+      "img-src": ["'self'", "https://asm03-nodejs-server.onrender.com/images"],
     },
   })
 );
