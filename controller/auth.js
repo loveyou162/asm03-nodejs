@@ -26,7 +26,6 @@ const sendEmailService = async (email, subject, html) => {
   return info;
 };
 exports.postSignup = async (req, res, next) => {
-  console.log(25, req.session.id);
   const { fullname, email, password, phone, role } = req.body;
   const error = validationResult(req);
   console.log(27, error.array());
