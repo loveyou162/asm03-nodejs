@@ -54,7 +54,7 @@ exports.postNewProduct = (req, res, next) => {
   const { name, price, category, count, shortDesc, longDesc } = req.body;
   const images = req.files;
   //tạo mới một product
-  console.log(image[0].path);
+  console.log(images[0].path);
   const product = new Product({
     name: name,
     price: price,
