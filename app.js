@@ -32,8 +32,8 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://admin-nodejs03-58efa.web.app",
-      "https://client-nodejs03-e546d.web.app",
+      "https://admin-nodejs03-be7d5.web.app",
+      "https://client-nodejs03-20cea.web.app",
       "http://localhost:5000",
     ],
     credentials: true,
