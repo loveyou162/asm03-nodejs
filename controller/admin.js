@@ -5,7 +5,7 @@ const room = require("../models/room");
 const fileHelper = require("../util/file");
 //hàm xóa "https://asm03-nodejs-server.onrender.com/"
 const filePath = (path) => {
-  return path.replace("https://asm03-nodejs-server.onrender.com/", "");
+  return path.replace("https://asm03-nodejs-server.onrender.com/images", "");
 };
 exports.getProductsAdmin = async (req, res, next) => {
   Product.find()
@@ -54,6 +54,7 @@ exports.postNewProduct = (req, res, next) => {
   const { name, price, category, count, shortDesc, longDesc } = req.body;
   const images = req.files;
   //tạo mới một product
+  console.log(image[0].path);
   const product = new Product({
     name: name,
     price: price,
