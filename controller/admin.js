@@ -101,25 +101,25 @@ exports.postUpdateProduct = (req, res, next) => {
       product.category = category ? category : product.category;
       product.count = count ? count : product.count;
       if (images[0]) {
-        fileHelper.deleteFile(filePath(product.img1));
+        // fileHelper.deleteFile(filePath(product.img1));
         product.img1 = images[0]
           ? `https://asm03-nodejs-server.onrender.com/${images[0].path}`
           : product.img1;
       }
       if (images[1]) {
-        fileHelper.deleteFile(filePath(product.img2));
+        // fileHelper.deleteFile(filePath(product.img2));
         product.img2 = images[1]
           ? `https://asm03-nodejs-server.onrender.com/${images[1].path}`
           : product.img2;
       }
       if (images[2]) {
-        fileHelper.deleteFile(filePath(product.img3));
+        // fileHelper.deleteFile(filePath(product.img3));
         product.img3 = images[2]
           ? `https://asm03-nodejs-server.onrender.com/${images[2].path}`
           : product.img3;
       }
       if (images[3]) {
-        fileHelper.deleteFile(filePath(product.img4));
+        // fileHelper.deleteFile(filePath(product.img4));
         product.img4 = images[3]
           ? `https://asm03-nodejs-server.onrender.com/${images[3].path}`
           : product.img4;
@@ -143,11 +143,11 @@ exports.deleteProduct = (req, res, next) => {
   console.log("delete:", prodId);
   Product.findById(prodId)
     .then((product) => {
-      fileHelper.deleteFile(filePath(product.img1));
-      fileHelper.deleteFile(filePath(product.img2));
-      fileHelper.deleteFile(filePath(product.img3));
-      fileHelper.deleteFile(filePath(product.img4));
-      console.log("Đã xóa thành công!");
+      // fileHelper.deleteFile(filePath(product.img1));
+      // fileHelper.deleteFile(filePath(product.img2));
+      // fileHelper.deleteFile(filePath(product.img3));
+      // fileHelper.deleteFile(filePath(product.img4));
+      // console.log("Đã xóa thành công!");
       return Product.deleteOne({ _id: prodId, userId: req.user._id });
     })
     .then(() => {
