@@ -5,7 +5,7 @@ const room = require("../models/room");
 const fileHelper = require("../util/file");
 //hàm xóa "https://asm03-nodejs-server.onrender.com/"
 const filePath = (path) => {
-  return path.replace("https://asm03-nodejs-server.onrender.com/images", "");
+  return path.replace("https://asm03-nodejs-server.onrender.com", "");
 };
 exports.getProductsAdmin = async (req, res, next) => {
   Product.find()
