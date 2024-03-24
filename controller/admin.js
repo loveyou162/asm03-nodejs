@@ -35,7 +35,7 @@ exports.getDashboard = async (req, res, next) => {
     const quantityUser = await User.find();
     //lấy trung bình thu nhập
     const arrPrice = await Order.find().distinct("user.totalPrice");
-    const averagePrice = arrPrice.reduce((a, b) => a + b, 0) / arrPrice.length;
+    const averagePrice = arrPrice.reduce((a, b) => a + b, 0);
     const order = await Order.find();
     const allData = {
       quantityUser: quantityUser.length,
