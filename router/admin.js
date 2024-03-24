@@ -6,50 +6,52 @@ const authController = require("../controller/auth");
 const User = require("../models/user");
 const adminController = require("../controller/admin");
 const { body } = require("express-validator");
+const jwt = require("jsonwebtoken");
+
 router.post(
   "/search-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.postSearchProduct
 );
 router.get(
   "/all-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.getProductsAdmin
 );
 
 router.get(
   "/dashboard",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.getDashboard
 );
 router.post(
   "/new-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.postNewProduct
 );
 router.post(
   "/update-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.postUpdateProduct
 );
 router.get(
   "/update-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.getUpdateProduct
 );
 router.delete(
   "/delete-product",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkClient],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkAdmin],
   adminController.deleteProduct
 );
 router.get(
   "/all-room",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkCounselor],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkCounselor],
   adminController.getMessage
 );
 router.get(
   "/detail-room",
-  // [checkAuth.checkAdminAuth, checkTypeUser.checkCounselor],
+  [checkAuth.checkAdminAuth, checkTypeUser.checkCounselor],
   adminController.getDetailMessage
 );
 
@@ -106,6 +108,6 @@ router.post(
   authController.postLogin
 );
 
-router.get("/logout", authController.getLogouts);
-
+router.post("/logout", authController.postLogouts);
+router.post("/refreshToken", authController.postRefreshToken);
 module.exports = router;

@@ -2,6 +2,7 @@ const Product = require("../models/product");
 const User = require("../models/user");
 const Order = require("../models/order");
 const nodemailer = require("nodemailer");
+const { validationResult } = require("express-validator");
 const sendEmailService = async (email, subject, html) => {
   const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
@@ -30,8 +31,20 @@ const formatPrice = (price) => {
 exports.getAllProducts = async (req, res, next) => {
   Product.find()
     .then((result) => {
-      // console.log(result);
       return res.json(result);
+    })
+    .catch((err) => {
+      next(err);
+    });
+};
+
+exports.getDetailProduct = (req, res, next) => {
+  const prodId = req.query.prodId;
+  console.log(prodId);
+  Product.findById(prodId)
+    .then((result) => {
+      console.log(result);
+      res.json(result);
     })
     .catch((err) => {
       next(err);
@@ -56,7 +69,6 @@ exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findById(prodId)
     .then((product) => {
-      console.log(product);
       if (product.count > 0) {
         return req.user.addToCart(product);
       } else {
@@ -68,11 +80,9 @@ exports.postCart = (req, res, next) => {
         return product.productId.toString() === prodId.toString();
       });
 
-      console.log(66, productId);
       res.json({ quantity: productId });
     })
     .catch((err) => {
-      console.log(83, err);
       const error = new Error(err);
       error.httpStatusCode = 500;
       return next(error);
@@ -89,7 +99,6 @@ exports.postDecrementCart = (req, res, next) => {
       const productId = user.cart.items.find((product) => {
         return product.productId.toString() === prodId.toString();
       });
-      console.log(productId);
       res.json({ quantity: productId });
     })
     .catch((err) => {
@@ -109,7 +118,6 @@ exports.postDeleteCartProduct = (req, res, next) => {
       const productId = user.cart.items.find((product) => {
         return product.productId.toString() === prodId.toString();
       });
-      console.log(productId);
       res.json({ quantity: productId });
     })
     .catch((err) => {
@@ -120,6 +128,13 @@ exports.postDeleteCartProduct = (req, res, next) => {
 };
 exports.postOrder = async (req, res, next) => {
   const { totalPrice, fullname, email, phone, address } = req.body;
+  const errors = validationResult(req);
+
+  // Kiểm tra nếu có lỗi từ validationResult
+  if (!errors.isEmpty()) {
+    // Nếu có lỗi, trả về một đối tượng JSON chứa thông tin lỗi
+    return res.status(400).json({ errors: errors.array() });
+  }
 
   try {
     console.log({ totalPrice, fullname, email, phone, address });
@@ -132,8 +147,6 @@ exports.postOrder = async (req, res, next) => {
       quantity: item.quantity,
       product: { ...item.productId._doc },
     }));
-
-    console.log(128, products);
 
     // Check product availability before order creation
     const insufficientStock = products.some(
@@ -183,7 +196,7 @@ exports.postOrder = async (req, res, next) => {
       )
       .join("");
 
-    // Place order, send email notification (if implemented), and clear cart
+    // Đặt hàng, gửi email thông báo (nếu được triển khai) và xóa giỏ hàng
     const savedOrder = await order.save();
     const subject = "Order Succeeded!";
     const html = `
@@ -219,12 +232,12 @@ exports.postOrder = async (req, res, next) => {
   }
 };
 
-// Assuming you have a separate updateProduct function for modifying product counts
+// Giả sử bạn có một hàm updateProduct riêng để sửa đổi số lượng sản phẩm
 async function updateProduct(productId, quantity) {
   const product = await Product.findByIdAndUpdate(productId, {
     $inc: { count: -quantity },
   });
-  // Handle potential errors during product update
+  /// Xử lý các lỗi tiềm ẩn trong quá trình cập nhật sản phẩm
   if (!product) {
     throw new Error("Product not found!");
   }

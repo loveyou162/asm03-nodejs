@@ -3,7 +3,6 @@ const User = require("../models/user");
 const Order = require("../models/order");
 const room = require("../models/room");
 const fileHelper = require("../util/file");
-
 //hàm xóa "http://localhost:5000/"
 const filePath = (path) => {
   return path.replace("http://localhost:5000/", "");
@@ -19,11 +18,9 @@ exports.getProductsAdmin = async (req, res, next) => {
 };
 exports.postSearchProduct = (req, res, next) => {
   const query = req.body.query;
-  console.log(query);
   const regexQuery = new RegExp(query, "i");
   Product.find({ name: regexQuery })
     .then((result) => {
-      console.log(result);
       res.json(result);
     })
     .catch((err) => {
@@ -78,7 +75,6 @@ exports.postNewProduct = (req, res, next) => {
 //lấy dữ liệu mặc định cho form
 exports.getUpdateProduct = (req, res, next) => {
   const prodId = req.query.prodId;
-  console.log(80, prodId);
   Product.findById(prodId)
     .then((product) => {
       res.json(product);
@@ -176,13 +172,13 @@ exports.getMessage = (req, res, next) => {
 };
 exports.getDetailMessage = (req, res, next) => {
   const roomId = req.query.roomId;
-  console.log(153, roomId);
   room
     .findOne({ roomId: roomId })
     .populate("messages.messageId")
     .then((room) => {
-      console.log(room);
-      res.json(room);
+      room.populate("userId").then((room) => {
+        res.json(room);
+      });
     })
     .catch((err) => {
       const error = new Error(err);
