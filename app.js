@@ -68,7 +68,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       // Cho phép hiển thị ảnh từ đường dẫn /images
-      "img-src": ["'self'", "http://localhost:5000/images"],
+      "img-src": ["'self'", "https://asm03-nodejs-server.onrender.com/images"],
     },
   })
 );
