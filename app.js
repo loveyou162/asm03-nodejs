@@ -29,9 +29,9 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://admin-nodejs03-18ed4.web.app",
-      "https://client-nodejs03-20cea.web.app",
-      "http://localhost:5000",
+      "https://admin-nodejs03-d94a9.web.app",
+      "https://client-nodejs03-a429d.web.app",
+      "https://asm03-nodejs-server.onrender.com",
     ],
     credentials: true,
     method: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
@@ -44,7 +44,7 @@ app.use(
   helmet.contentSecurityPolicy({
     directives: {
       // Cho phép hiển thị ảnh từ đường dẫn /images
-      "img-src": ["'self'", "http://localhost:5000/images"],
+      "img-src": ["'self'", "https://asm03-nodejs-server.onrender.com/images"],
     },
   })
 );
