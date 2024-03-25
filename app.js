@@ -3,8 +3,7 @@ const port = 5000;
 const path = require("path");
 const app = express();
 const mongoose = require("mongoose");
-// const session = require("express-session");
-// const MongoDBStore = require("connect-mongodb-session")(session);
+
 const helmet = require("helmet");
 const compression = require("compression");
 const cors = require("cors");
@@ -38,28 +37,7 @@ app.use(
     method: ["POST", "PUT", "GET", "OPTIONS", "HEAD"],
   })
 );
-// //tạo session cho client
-// app.use(
-//   "/shop",
-//   session({
-//     secret: "client secret",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: clientStore,
-//     cookie: { secure: false, maxAge: 3000 * 60 * 60 },
-//   })
-// );
-// //tạo session cho admin
-// app.use(
-//   "/admin",
-//   session({
-//     secret: "admin secret",
-//     resave: false,
-//     saveUninitialized: false,
-//     store: adminStore,
-//     cookie: { secure: false, maxAge: 3000 * 60 * 60 },
-//   })
-// );
+
 // app.use(helmet());
 // Cấu hình chính sách bảo mật nội dung (CSP) cho ứng dụng
 app.use(
@@ -96,10 +74,11 @@ const fileFilter = (req, file, cb) => {
     cb(null, false);
   }
 };
-
+//cấu hình multer để nhận được tối đa 4 ảnh
 app.use(
-  multer({ storage: fileStorage, filter: fileFilter }).array("images", 5)
+  multer({ storage: fileStorage, filter: fileFilter }).array("images", 4)
 );
+// thiết lập đường dẫn cho file tĩnh /images
 app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use((req, res, next) => {

@@ -5,7 +5,6 @@ const Room = require("../models/room");
 // Function to initialize Socket.IO
 const initSocketIO = (server) => {
   // Create a new instance of Socket.IO and pass the server instance to it
-  //   console.log(5, server);
   const io = new Server(server, {
     cors: {
       origin: [
@@ -86,12 +85,10 @@ const initSocketIO = (server) => {
     });
     // client và admin chat với nhau thì cập nhật trên mongo
     socket.on("send-admin", async (data) => {
-      console.log(90, data);
       try {
         //tạo message mới khi có tin nhắn mới
         const newMessage = new Message({
           content: data.message,
-          // userId: data.user,
           roomId: data.roomId,
           role: data.role,
         });
