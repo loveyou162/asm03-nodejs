@@ -30,7 +30,7 @@ app.use(
     origin: [
       "http://localhost:3000",
       "http://localhost:3001",
-      "https://admin-nodejs03-be7d5.web.app",
+      "https://admin-nodejs03-18ed4.web.app",
       "https://client-nodejs03-20cea.web.app",
       "https://asm03-nodejs-server.onrender.com",
     ],
