@@ -18,7 +18,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 
 dotenv.config();
-const MONGODB_URI = `mongodb+srv://caoboi520:Aw8umOX1tKDxMVsg@cluster0.fdehoqk.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0`;
+const MONGODB_URI = `mongodb+srv://caoboi520:h6QSvZUT90XI8Iu2@cluster0.fdehoqk.mongodb.net/ecommerce?retryWrites=true&w=majority&appName=Cluster0`;
 console.log(24, process.env.ACCESS_TOKEN_SECRET);
 const authRoute = require("./router/auth");
 const shopRoute = require("./router/shop");
